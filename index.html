@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FF Likes Premium</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #121212; 
+            color: #ffffff; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+        }
+        .card { 
+            background-color: #1e1e1e; 
+            padding: 40px; 
+            border-radius: 12px; 
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6); 
+            text-align: center; 
+            width: 320px; 
+            border: 1px solid #333;
+        }
+        h1 { color: #ffaa00; font-size: 26px; margin-bottom: 5px; }
+        p { font-size: 14px; color: #aaaaaa; margin-bottom: 30px; }
+        
+        /* The dashboard is hidden until the user logs in */
+        #dashboard { display: none; margin-top: 20px; }
+        
+        input { 
+            width: 85%; 
+            padding: 12px; 
+            margin-bottom: 15px; 
+            border-radius: 6px; 
+            border: 1px solid #444; 
+            background-color: #2a2a2a;
+            color: white;
+            font-size: 16px; 
+            text-align: center;
+        }
+        button { 
+            background-color: #ffaa00; 
+            color: #000; 
+            padding: 12px 20px; 
+            border: none; 
+            border-radius: 6px; 
+            font-weight: bold; 
+            font-size: 16px;
+            cursor: pointer; 
+            width: 93%; 
+            transition: 0.3s;
+        }
+        button:hover { background-color: #e69900; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>FF Likes Premium</h1>
+    <p>Secure Telegram Login</p>
+
+    <!-- The Telegram Login Widget -->
+    <div id="telegram-login-box">
+        <script async src="https://telegram.org/js/telegram-widget.js?22" 
+                data-telegram-login="ff_autolikes1201_bot" 
+                data-size="large" 
+                data-onauth="onTelegramAuth(user)" 
+                data-request-access="write">
+        </script>
+        <p style="margin-top: 15px; font-size: 12px; color: #666;">
+            We never see your passwords or session files.
+        </p>
+    </div>
+
+    <!-- The Dashboard UI (Appears after login) -->
+    <div id="dashboard">
+        <h3 id="welcome-message" style="color: #4CAF50;"></h3>
+        <input type="number" id="uid" placeholder="Enter FF UID (e.g. 537247839)">
+        <button onclick="submitOrder()">Pay ₹30 & Activate</button>
+    </div>
+</div>
+
+<script>
+    // This function is triggered by Telegram when login is successful
+    function onTelegramAuth(user) {
+        // 1. Hide the login button
+        document.getElementById('telegram-login-box').style.display = 'none';
+        
+        // 2. Show the dashboard
+        document.getElementById('dashboard').style.display = 'block';
+        
+        // 3. Update the text with their real Telegram name
+        document.getElementById('welcome-message').innerText = 'Welcome, ' + user.first_name + '!';
+        
+        // In the background, we can see their secure ID
+        console.log("Secure Telegram User Data:", user);
+    }
+
+    // This simulates the payment button
+    function submitOrder() {
+        let uid = document.getElementById('uid').value;
+        if(uid.length > 5) {
+            alert("Redirecting to UPI payment for UID: " + uid + "\n\n(This will eventually write to your Google Sheet!)");
+        } else {
+            alert("Please enter a valid Free Fire UID.");
+        }
+    }
+</script>
+
+</body>
+</html>
