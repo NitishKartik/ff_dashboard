@@ -60,6 +60,7 @@
 
 <div class="card">
     <h1>FF Likes Premium</h1>
+    <h4>by Nitish Kartik!!!</h4>
     <p>Secure Telegram Login</p>
 
     <!-- The Telegram Login Widget -->
@@ -79,7 +80,7 @@
     <div id="dashboard">
         <h3 id="welcome-message" style="color: #4CAF50;"></h3>
         <input type="number" id="uid" placeholder="Enter FF UID (e.g. 537247839)">
-        <button onclick="submitOrder()">Pay ₹30 & Activate</button>
+        <button onclick="submitOrder()">Pay ₹300 & Activate</button>
     </div>
 </div>
 
@@ -93,7 +94,7 @@
         document.getElementById('dashboard').style.display = 'block';
         
         // 3. Update the text with their real Telegram name
-        document.getElementById('welcome-message').innerText = 'Welcome, ' + user.first_name + '!';
+        document.getElementById('welcome-message').innerText = 'Welcome, ' + user.first_name + user.last_name +'!';
         
         // In the background, we can see their secure ID
         console.log("Secure Telegram User Data:", user);
@@ -102,7 +103,7 @@
     // This simulates the payment button
     function submitOrder() {
         let uid = document.getElementById('uid').value;
-        if(uid.length > 5) {
+        if(uid.length >= 8) {
             alert("Redirecting to UPI payment for UID: " + uid + "\n\n(This will eventually write to your Google Sheet!)");
         } else {
             alert("Please enter a valid Free Fire UID.");
